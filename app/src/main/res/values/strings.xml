@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MensaReloaded</string>
+
+    <string name="alte_mensa">Alte Mensa</string>
+    <string name="zeltmensa">Zeltmensa</string>
+    <string name="siedepunkt">Siedepunkt</string>
+    <string name="wu_eins">WuEins</string>
+
+    <string name="price">Preis</string>
+    <string name="category">Kategorie</string>
+    <string name="meal_description">Beschreibung</string>
+    <string name="pizza">Pizza</string>
+</resources>

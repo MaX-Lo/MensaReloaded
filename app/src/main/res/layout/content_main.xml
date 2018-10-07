@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    android:gravity="center"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="15dp">
+
+        <ImageButton
+            android:id="@+id/btnAlteMensa"
+            android:contentDescription="@string/alte_mensa"
+            android:src="@drawable/ic_alte_mensa"
+            style="@style/MensaButtonStyle" />
+
+        <TextView
+            android:id="@+id/tvAlteMensa"
+            android:text="@string/alte_mensa"
+            style="@style/MensaTextViewStyle"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="15dp">
+
+        <ImageButton
+            android:id="@+id/btnZeltmensa"
+            android:contentDescription="@string/zeltmensa"
+            android:src="@drawable/ic_zelt_mensa"
+            style="@style/MensaButtonStyle" />
+
+        <TextView
+            android:id="@+id/tvZeltmensa"
+            android:text="@string/zeltmensa"
+            style="@style/MensaTextViewStyle"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="15dp">
+
+        <ImageButton
+            android:id="@+id/btnSiedepunkt"
+            android:contentDescription="@string/siedepunkt"
+            android:src="@drawable/ic_siedepunkt"
+            style="@style/MensaButtonStyle" />
+
+        <TextView
+            android:id="@+id/tvSiedepunkt"
+            android:text="@string/siedepunkt"
+            style="@style/MensaTextViewStyle"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="15dp">
+
+        <ImageButton
+            android:id="@+id/btnWuEins"
+            android:contentDescription="@string/wu_eins"
+            android:src="@drawable/ic_wu_eins"
+            style="@style/MensaButtonStyle" />
+
+        <TextView
+            android:id="@+id/tvWuEins"
+            android:text="@string/wu_eins"
+            style="@style/MensaTextViewStyle"/>
+
+    </LinearLayout>
+
+</LinearLayout>
