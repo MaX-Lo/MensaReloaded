@@ -23,4 +23,7 @@ public interface MealDao {
             "INNER JOIN offer_table ON meal_table.id = offer_table.mealId " +
             "WHERE offer_table.mensa = :mensa AND offer_table.date = :date")
     LiveData<List<Meal>> getMeals(Mensa mensa, long date);
+
+    @Query("SELECT * FROM meal_table WHERE meal_table.id = :mealId")
+    Meal getMeal(String mealId);
 }

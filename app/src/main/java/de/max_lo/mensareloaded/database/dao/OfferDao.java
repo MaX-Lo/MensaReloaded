@@ -4,6 +4,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
+import de.max_lo.mensareloaded.Mensa;
 import de.max_lo.mensareloaded.database.entity.Offer;
 
 @Dao
@@ -13,4 +14,7 @@ public interface OfferDao {
 
     @Query("DELETE FROM offer_table")
     void deleteAll();
+
+    @Query("SELECT * FROM offer_table WHERE mensa = :mensa AND date = :date AND mealId = :mealId")
+    Offer getOffer(Mensa mensa, long date, String mealId);
 }
