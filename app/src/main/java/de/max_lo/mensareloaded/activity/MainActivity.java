@@ -7,8 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
 
-import de.max_lo.mensareloaded.Mensa;
 import de.max_lo.mensareloaded.R;
+import de.max_lo.mensareloaded.Mensa;
 
 public class MainActivity extends AppCompatActivity {
 
