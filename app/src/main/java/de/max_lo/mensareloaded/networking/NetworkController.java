@@ -79,9 +79,21 @@ public class NetworkController {
                 mealRetro.getId().toString(),
                 mealRetro.getName(),
                 mealRetro.getNotes(),
-                String.valueOf(mealRetro.getPrices().getStudents()),
+                formatPricing(String.valueOf(mealRetro.getPrices().getStudents())),
                 mealRetro.getCategory()
         );
+    }
+
+    /**
+     * @param oldPriceFormat x.x
+     * @return new price format x.xx
+     */
+    public static String formatPricing(String oldPriceFormat) {
+        if (oldPriceFormat.charAt(oldPriceFormat.length() - 2) == '.') {
+            return oldPriceFormat + "0€";
+        } else {
+            return oldPriceFormat;
+        }
     }
 
 }

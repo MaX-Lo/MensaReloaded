@@ -57,7 +57,7 @@ public class MealActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mealsRecyclerView.setLayoutManager(mLayoutManager);
 
-        mealsViewAdapter = new MealViewAdapter(mealsViewModel.getMeals().getValue());
+        mealsViewAdapter = new MealViewAdapter(this, mealsViewModel.getMeals().getValue());
         mealsRecyclerView.setAdapter(mealsViewAdapter);
     }
 }

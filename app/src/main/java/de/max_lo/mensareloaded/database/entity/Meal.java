@@ -25,7 +25,7 @@ public class Meal {
                 String studentPrice, String category) {
         this.id = id;
         this.description = description;
-        this. notes = notes;
+        this.notes = notes;
         this.studentPrice = studentPrice;
         this.category = category;
     }

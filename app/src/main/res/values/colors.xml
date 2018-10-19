@@ -9,6 +9,9 @@
     <color name="textGrey">#757575</color>
     <color name="textBlack">#424242</color>
 
-    <color name="color_light_brown">#f1ede5</color>
+    <color name="color_light_brown">#fdf8ee</color>
+    <color name="color_light_green">#e8ffe8</color>
+    <color name="color_light_blue">#d9f2ff</color>
+
 
 </resources>
