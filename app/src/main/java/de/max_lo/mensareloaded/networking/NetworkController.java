@@ -11,6 +11,7 @@ import java.util.List;
 import de.max_lo.mensareloaded.Mensa;
 import de.max_lo.mensareloaded.database.entity.Meal;
 import de.max_lo.mensareloaded.helper.DateHelper;
+import de.max_lo.mensareloaded.helper.MealHelper;
 import de.max_lo.mensareloaded.helper.MensaHelper;
 import de.max_lo.mensareloaded.networking.gson_object.MealRetro;
 import retrofit2.Call;
@@ -69,7 +70,8 @@ public class NetworkController {
     public void onReceivedMeals(Mensa mensa, long date, List<MealRetro> mealsRetro) {
         List<Meal> meals = new ArrayList<>();
         for (MealRetro mealRetro : mealsRetro) {
-            meals.add(toMeal(mealRetro));
+            // add price information for meals the api doesn't provide prices for
+            meals.add((MealHelper.fixAPIInconsistencies(toMeal(mealRetro))));
         }
         caller.onReceivedMeals(mensa, date, meals);
     }
@@ -79,21 +81,8 @@ public class NetworkController {
                 mealRetro.getId().toString(),
                 mealRetro.getName(),
                 mealRetro.getNotes(),
-                formatPricing(String.valueOf(mealRetro.getPrices().getStudents())),
+                MealHelper.formatPricing(String.valueOf(mealRetro.getPrices().getStudents())),
                 mealRetro.getCategory()
         );
     }
-
-    /**
-     * @param oldPriceFormat x.x
-     * @return new price format x.xx
-     */
-    public static String formatPricing(String oldPriceFormat) {
-        if (oldPriceFormat.charAt(oldPriceFormat.length() - 2) == '.') {
-            return oldPriceFormat + "0€";
-        } else {
-            return oldPriceFormat;
-        }
-    }
-
 }

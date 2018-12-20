@@ -50,4 +50,30 @@ public class Meal {
     public String getStudentPrice() {
         return studentPrice;
     }
+
+    public void setId(@NonNull String id) {
+        this.id = id;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setNotes(List<String> notes) {
+        this.notes = notes;
+    }
+
+    public void setStudentPrice(String studentPrice) {
+        this.studentPrice = studentPrice;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "id: " + id + ", description: " + description + ", notes: " + notes + ", student price: " + studentPrice + ", category: " + category;
+    }
 }

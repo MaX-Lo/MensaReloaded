@@ -11,6 +11,7 @@ import com.google.gson.GsonBuilder;
 import java.util.List;
 
 import de.max_lo.mensareloaded.Mensa;
+import de.max_lo.mensareloaded.helper.MealHelper;
 import de.max_lo.mensareloaded.networking.NetworkController;
 import de.max_lo.mensareloaded.networking.NetworkListener;
 import de.max_lo.mensareloaded.networking.Webservice;
@@ -57,6 +58,7 @@ public class MealRepository implements NetworkListener {
     }
 
     public LiveData<List<Meal>> getMeals(Mensa mensa, long date) {
+        // Todo only fetch from network when not already in db
         nc.fetchMeals(mensa, date);
 
         return mealDao.getMeals(mensa, date);
