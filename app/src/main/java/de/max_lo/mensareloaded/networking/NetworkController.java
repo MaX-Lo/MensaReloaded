@@ -65,7 +65,6 @@ public class NetworkController {
                 Log.e(TAG, "network request failed");
                 t.printStackTrace();
             }
-
         });
     }
 

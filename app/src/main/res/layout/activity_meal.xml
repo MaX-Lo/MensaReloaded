@@ -7,6 +7,14 @@
     tools:context=".activity.MealActivity"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+    <ImageView
+        android:id="@+id/iv_no_meals"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/shrug"
+        android:padding="25dp"
+        android:contentDescription="@string/no_meals_available"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/meals_recycler_view"
         android:scrollbars="vertical"

@@ -10,4 +10,6 @@
     <string name="category">Kategorie</string>
     <string name="meal_description">Beschreibung</string>
     <string name="pizza">Pizza</string>
+
+    <string name="no_meals_available">Sry, no meals available</string>
 </resources>
