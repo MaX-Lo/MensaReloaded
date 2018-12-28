@@ -53,8 +53,10 @@ public class NetworkController {
             public void onResponse(Call<List<MealRetro>> call, Response<List<MealRetro>> response) {
                 int statusCode = response.code();
                 List<MealRetro> receivedMeals = response.body();
-                Log.d(TAG, "received meals with statusCode " + statusCode + " " + receivedMeals.get(0).getName());
-                onReceivedMeals(mensa, date, receivedMeals);
+                if (receivedMeals != null) {
+                    Log.d(TAG, "received meals with statusCode " + statusCode + " " + receivedMeals.get(0).getName());
+                    onReceivedMeals(mensa, date, receivedMeals);
+                }
             }
 
             @Override
