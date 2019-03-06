@@ -1,13 +1,20 @@
 package de.max_lo.mensareloaded.helper;
 
-import android.util.Log;
 import java.time.LocalDate;
+import java.util.Date;
 
 public class DateHelper {
 
     public static String getDateStringFromDaysSinceEpoch(long daysSinceEpoch) {
         // Todo test it and write tests
-        LocalDate date = LocalDate.ofEpochDay(daysSinceEpoch);
-        return date.toString();
+        String date;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            date = LocalDate.ofEpochDay(daysSinceEpoch).toString();
+        } else {
+            Date d = new Date();
+            d.setTime(daysSinceEpoch * 86400000);
+            date = d.toString();
+        }
+        return date;
     }
 }
