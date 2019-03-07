@@ -4,30 +4,18 @@ import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 import android.util.Log;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import android.util.Pair;
 
 import java.util.List;
 
 import de.max_lo.mensareloaded.Mensa;
-import de.max_lo.mensareloaded.helper.MealHelper;
 import de.max_lo.mensareloaded.networking.NetworkController;
 import de.max_lo.mensareloaded.networking.NetworkListener;
-import de.max_lo.mensareloaded.networking.Webservice;
 import de.max_lo.mensareloaded.database.AppRoomDatabase;
 import de.max_lo.mensareloaded.database.dao.MealDao;
 import de.max_lo.mensareloaded.database.dao.OfferDao;
 import de.max_lo.mensareloaded.database.entity.Meal;
 import de.max_lo.mensareloaded.database.entity.Offer;
-import de.max_lo.mensareloaded.helper.DateHelper;
-import de.max_lo.mensareloaded.helper.MensaHelper;
-import de.max_lo.mensareloaded.networking.gson_object.MealRetro;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MealRepository implements NetworkListener {
 
@@ -46,7 +34,6 @@ public class MealRepository implements NetworkListener {
         offerDao = db.offerDao();
 
         nc = new NetworkController(this);
-
     }
 
     @Override
@@ -58,13 +45,16 @@ public class MealRepository implements NetworkListener {
     }
 
     public LiveData<List<Meal>> getMeals(Mensa mensa, long dateAsDaysFromEpoch) {
-        // Todo only fetch from network when not already in db
-        nc.fetchMeals(mensa, dateAsDaysFromEpoch);
+        checkForExistingMealData(mensa, dateAsDaysFromEpoch);
 
         return mealDao.getMeals(mensa, dateAsDaysFromEpoch);
     }
 
-    public void insertMeal(Meal meal) {
+    private void fetchMeals(Mensa mensa, long daysSinceEpoch) {
+        nc.fetchMeals(mensa, daysSinceEpoch);
+    }
+
+    private void insertMeal(Meal meal) {
         new insertMealAsyncTask(mealDao).execute(meal);
     }
 
@@ -85,7 +75,7 @@ public class MealRepository implements NetworkListener {
         }
     }
 
-    public void insertOffer(Offer offer) {
+    private void insertOffer(Offer offer) {
         new insertOfferAsyncTask(offerDao).execute(offer);
     }
 
@@ -104,6 +94,31 @@ public class MealRepository implements NetworkListener {
                 mAsyncTaskDao.insert(params[0]);
             }
             return null;
+        }
+    }
+
+    private void checkForExistingMealData(Mensa mensa, long date) {
+        Pair<Mensa, Long> params = new Pair<>(mensa, date);
+        try {
+            boolean dataFromDBAvailable= new checkMealDataAsyncTask(offerDao).execute(params).get();
+            if (!dataFromDBAvailable) {
+                fetchMeals(mensa, date);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static class checkMealDataAsyncTask extends AsyncTask<Pair<Mensa, Long>, Void, Boolean> {
+        private OfferDao mAsyncOfferDao;
+
+        checkMealDataAsyncTask(OfferDao offerDao) {
+            mAsyncOfferDao = offerDao;
+        }
+
+        @Override
+        protected Boolean doInBackground(Pair<Mensa, Long>... params) {
+            return mAsyncOfferDao.getOffers(params[0].first, params[0].second).size() > 0;
         }
     }
 }

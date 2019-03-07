@@ -6,7 +6,6 @@ import java.util.Date;
 public class DateHelper {
 
     public static String getDateStringFromDaysSinceEpoch(long daysSinceEpoch) {
-        // Todo test it and write tests
         String date;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             date = LocalDate.ofEpochDay(daysSinceEpoch).toString();
