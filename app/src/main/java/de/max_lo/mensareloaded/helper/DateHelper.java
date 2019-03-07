@@ -17,4 +17,8 @@ public class DateHelper {
         }
         return date;
     }
+
+    public static long getDaysSinceEpoch() {
+        return (System.currentTimeMillis()) / 86400000;
+    }
 }

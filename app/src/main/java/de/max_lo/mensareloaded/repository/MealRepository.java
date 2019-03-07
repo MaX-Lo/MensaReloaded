@@ -57,11 +57,11 @@ public class MealRepository implements NetworkListener {
         }
     }
 
-    public LiveData<List<Meal>> getMeals(Mensa mensa, long date) {
+    public LiveData<List<Meal>> getMeals(Mensa mensa, long dateAsDaysFromEpoch) {
         // Todo only fetch from network when not already in db
-        nc.fetchMeals(mensa, date);
+        nc.fetchMeals(mensa, dateAsDaysFromEpoch);
 
-        return mealDao.getMeals(mensa, date);
+        return mealDao.getMeals(mensa, dateAsDaysFromEpoch);
     }
 
     public void insertMeal(Meal meal) {

@@ -43,19 +43,19 @@ public class NetworkController {
         webservice = retrofit.create(Webservice.class);
     }
 
-    public void fetchMeals(final Mensa mensa, final long date) {
+    public void fetchMeals(final Mensa mensa, final long dateAsDaysFromEpoch) {
         Call<List<MealRetro>> call = webservice.getMeals(
                 MensaHelper.getMensaId(mensa),
-                DateHelper.getDateStringFromDaysSinceEpoch(date));
+                DateHelper.getDateStringFromDaysSinceEpoch(dateAsDaysFromEpoch));
 
         call.enqueue(new Callback<List<MealRetro>>() {
             @Override
             public void onResponse(Call<List<MealRetro>> call, Response<List<MealRetro>> response) {
                 int statusCode = response.code();
                 List<MealRetro> receivedMeals = response.body();
-                if (receivedMeals != null) {
+                if (receivedMeals != null && receivedMeals.size() > 0) {
                     Log.d(TAG, "received meals with statusCode " + statusCode + " " + receivedMeals.get(0).getName());
-                    onReceivedMeals(mensa, date, receivedMeals);
+                    onReceivedMeals(mensa, dateAsDaysFromEpoch, receivedMeals);
                 }
             }
 
