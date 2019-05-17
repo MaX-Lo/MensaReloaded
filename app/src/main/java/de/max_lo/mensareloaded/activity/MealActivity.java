@@ -33,7 +33,8 @@ public class MealActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mealsRecyclerView = findViewById(R.id.meals_recycler_view);
         ivNoMeals = findViewById(R.id.iv_no_meals);

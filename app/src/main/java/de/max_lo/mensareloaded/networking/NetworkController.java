@@ -47,7 +47,6 @@ public class NetworkController {
         Call<List<MealRetro>> call = webservice.getMeals(
                 MensaHelper.getMensaId(mensa),
                 DateHelper.getDateStringFromDaysSinceEpoch(dateAsDaysFromEpoch));
-
         call.enqueue(new Callback<List<MealRetro>>() {
             @Override
             public void onResponse(Call<List<MealRetro>> call, Response<List<MealRetro>> response) {
